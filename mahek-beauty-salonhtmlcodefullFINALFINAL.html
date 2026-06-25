@@ -1,0 +1,743 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mahek Beauty Salon </title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --ink:      #1a1410;
+    --gold:     #b8924a;
+    --gold-lt:  #d4af72;
+    --blush:    #f5ede3;
+    --warm-wht: #faf7f3;
+    --mid:      #7a6a58;
+    --rule:     #e0d5c5;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--warm-wht);
+    color: var(--ink);
+    overflow-x: hidden;
+  }
+
+  /* ─── NAV ─── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 1.1rem 4rem;
+    background: rgba(250,247,243,0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--rule);
+  }
+  .nav-logo {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.5rem; font-weight: 400; letter-spacing: 0.04em;
+    color: var(--ink); text-decoration: none;
+  }
+  .nav-logo span { color: var(--gold); font-style: italic; }
+  .nav-links { display: flex; gap: 2.2rem; list-style: none; }
+  .nav-links a {
+    font-size: 0.78rem; font-weight: 500; letter-spacing: 0.12em;
+    text-transform: uppercase; color: var(--mid); text-decoration: none;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--gold); }
+  .nav-cta {
+    background: var(--gold); color: #fff;
+    font-size: 0.75rem; font-weight: 500; letter-spacing: 0.1em;
+    text-transform: uppercase; text-decoration: none;
+    padding: 0.6rem 1.4rem; border-radius: 2px;
+    transition: background 0.2s;
+  }
+  .nav-cta:hover { background: var(--gold-lt); }
+
+  /* ─── HERO ─── */
+  #hero {
+    min-height: 100vh;
+    display: grid; grid-template-columns: 1fr 1fr;
+    padding-top: 68px;
+  }
+  .hero-left {
+    display: flex; flex-direction: column; justify-content: center;
+    padding: 5rem 4rem 5rem 6rem;
+  }
+  .hero-eyebrow {
+    font-size: 0.72rem; font-weight: 500; letter-spacing: 0.18em;
+    text-transform: uppercase; color: var(--gold);
+    margin-bottom: 1.4rem;
+  }
+  .hero-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(3rem, 5vw, 5.5rem);
+    font-weight: 300; line-height: 1.08;
+    color: var(--ink); margin-bottom: 1.6rem;
+  }
+  .hero-title em { font-style: italic; color: var(--gold); }
+  .hero-sub {
+    font-size: 1rem; line-height: 1.7; color: var(--mid);
+    max-width: 400px; margin-bottom: 2.8rem;
+  }
+  .hero-actions { display: flex; gap: 1rem; align-items: center; }
+  .btn-primary {
+    background: var(--gold); color: #fff; text-decoration: none;
+    padding: 0.85rem 2rem; font-size: 0.8rem; font-weight: 500;
+    letter-spacing: 0.1em; text-transform: uppercase; border-radius: 2px;
+    transition: background 0.2s;
+  }
+  .btn-primary:hover { background: var(--gold-lt); }
+  .btn-ghost {
+    color: var(--ink); text-decoration: none; font-size: 0.8rem;
+    font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase;
+    border-bottom: 1px solid var(--gold); padding-bottom: 2px;
+    transition: color 0.2s, border-color 0.2s;
+  }
+  .btn-ghost:hover { color: var(--gold); }
+  .hero-stats {
+    display: flex; gap: 2.5rem; margin-top: 3.5rem;
+    padding-top: 2.5rem; border-top: 1px solid var(--rule);
+  }
+  .stat-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2.2rem; font-weight: 600; color: var(--ink);
+    line-height: 1;
+  }
+  .stat-label { font-size: 0.7rem; color: var(--mid); letter-spacing: 0.1em; text-transform: uppercase; margin-top: 4px; }
+
+  .hero-right {
+    position: relative; overflow: hidden;
+    background: var(--blush);
+  }
+  .hero-right::before {
+    content: '';
+    position: absolute; inset: 0;
+    background:
+      radial-gradient(circle at 30% 60%, rgba(184,146,74,0.18) 0%, transparent 55%),
+      radial-gradient(circle at 80% 20%, rgba(184,146,74,0.12) 0%, transparent 45%);
+  }
+  .hero-image-wrap {
+    position: absolute; inset: 0;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .salon-illustration {
+    width: 78%; max-width: 420px;
+    filter: drop-shadow(0 24px 48px rgba(26,20,16,0.14));
+  }
+  /* Decorative floating elements */
+  .hero-decor {
+    position: absolute; font-family: 'Cormorant Garamond', serif;
+    font-size: 10rem; font-weight: 300; color: rgba(184,146,74,0.08);
+    line-height: 1; user-select: none; pointer-events: none;
+  }
+  .hero-decor.d1 { top: 8%; left: 5%; font-size: 14rem; }
+  .hero-decor.d2 { bottom: 5%; right: 5%; font-size: 10rem; }
+
+  /* ─── SECTION SHARED ─── */
+  section { padding: 6rem 6rem; }
+  .section-eyebrow {
+    font-size: 0.7rem; letter-spacing: 0.2em; text-transform: uppercase;
+    color: var(--gold); margin-bottom: 0.8rem; font-weight: 500;
+  }
+  .section-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2rem, 3.5vw, 3.2rem); font-weight: 300;
+    line-height: 1.15; color: var(--ink); margin-bottom: 1rem;
+  }
+  .section-title em { font-style: italic; color: var(--gold); }
+  .section-lead { color: var(--mid); font-size: 1rem; line-height: 1.7; max-width: 520px; }
+
+  /* ─── ABOUT ─── */
+  #about {
+    background: var(--blush);
+    display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center;
+  }
+  .about-text p { color: var(--mid); font-size: 0.97rem; line-height: 1.8; margin-bottom: 1.2rem; }
+  .about-quote {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.5rem; font-style: italic; color: var(--gold);
+    border-left: 3px solid var(--gold-lt); padding-left: 1.5rem;
+    line-height: 1.5; margin: 2rem 0;
+  }
+  .about-img-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+  .img-placeholder {
+    background: linear-gradient(135deg, var(--rule) 0%, rgba(184,146,74,0.1) 100%);
+    border-radius: 3px; overflow: hidden;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .img-placeholder.tall { grid-row: span 2; min-height: 300px; }
+  .img-placeholder.short { min-height: 140px; }
+  .img-icon { font-size: 2.5rem; color: rgba(184,146,74,0.35); }
+
+  /* ─── SERVICES ─── */
+  #services { background: var(--warm-wht); }
+  .services-header { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 3.5rem; }
+  .services-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5px; background: var(--rule); border: 1px solid var(--rule); }
+  .service-card {
+    background: var(--warm-wht); padding: 2.2rem 1.8rem;
+    transition: background 0.25s;
+  }
+  .service-card:hover { background: var(--blush); }
+  .service-icon {
+    width: 44px; height: 44px; border-radius: 50%;
+    background: var(--blush); display: flex; align-items: center; justify-content: center;
+    font-size: 1.3rem; margin-bottom: 1.2rem; transition: background 0.25s;
+  }
+  .service-card:hover .service-icon { background: rgba(184,146,74,0.2); }
+  .service-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.25rem; font-weight: 400; color: var(--ink); margin-bottom: 0.5rem;
+  }
+  .service-desc { font-size: 0.85rem; color: var(--mid); line-height: 1.65; }
+  .service-price {
+    display: inline-block; margin-top: 1rem;
+    font-size: 0.72rem; letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--gold); font-weight: 500;
+  }
+
+  /* ─── WHY US ─── */
+  #why {
+    background: var(--ink); color: var(--warm-wht);
+    display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center;
+  }
+  #why .section-title { color: var(--warm-wht); }
+  #why .section-lead { color: rgba(250,247,243,0.6); }
+  .perks-list { list-style: none; display: flex; flex-direction: column; gap: 1.6rem; margin-top: 2rem; }
+  .perk {
+    display: flex; gap: 1.2rem; align-items: flex-start;
+    padding-bottom: 1.6rem; border-bottom: 1px solid rgba(255,255,255,0.08);
+  }
+  .perk:last-child { border-bottom: none; padding-bottom: 0; }
+  .perk-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2rem; font-weight: 300; color: var(--gold); line-height: 1;
+    min-width: 40px;
+  }
+  .perk-text strong { display: block; font-size: 0.9rem; font-weight: 500; color: var(--warm-wht); margin-bottom: 0.3rem; }
+  .perk-text p { font-size: 0.82rem; color: rgba(250,247,243,0.55); line-height: 1.6; }
+  .why-visual {
+    display: flex; flex-direction: column; gap: 1.2rem;
+  }
+  .review-card {
+    background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 4px; padding: 1.5rem;
+  }
+  .review-stars { color: var(--gold); font-size: 0.85rem; letter-spacing: 2px; margin-bottom: 0.8rem; }
+  .review-text { font-size: 0.85rem; color: rgba(250,247,243,0.7); line-height: 1.65; font-style: italic; margin-bottom: 0.8rem; }
+  .review-author { font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--gold-lt); }
+
+  /* ─── HOURS & LOCATION ─── */
+  #contact {
+    background: var(--blush);
+    display: grid; grid-template-columns: 1fr 1fr; gap: 5rem;
+  }
+  .hours-grid { display: flex; flex-direction: column; gap: 0; margin-top: 2rem; }
+  .hours-row {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 0.9rem 0; border-bottom: 1px solid var(--rule);
+    font-size: 0.9rem;
+  }
+  .hours-row .day { color: var(--ink); font-weight: 500; }
+  .hours-row .time { color: var(--mid); }
+  .hours-row.closed .time { color: rgba(122,106,88,0.5); }
+  .hours-row.today { background: rgba(184,146,74,0.08); margin: 0 -0.5rem; padding: 0.9rem 0.5rem; border-radius: 2px; }
+  .hours-row.today .day { color: var(--gold); }
+
+  .contact-info { margin-top: 2rem; display: flex; flex-direction: column; gap: 1.4rem; }
+  .contact-item { display: flex; gap: 1rem; align-items: flex-start; }
+  .contact-icon {
+    width: 38px; height: 38px; background: rgba(184,146,74,0.12);
+    border-radius: 50%; display: flex; align-items: center; justify-content: center;
+    font-size: 1rem; flex-shrink: 0;
+  }
+  .contact-label { font-size: 0.68rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--mid); margin-bottom: 2px; }
+  .contact-value { font-size: 0.95rem; color: var(--ink); }
+  .contact-value a { color: var(--gold); text-decoration: none; }
+  .map-placeholder {
+    margin-top: 2rem; height: 220px; background: var(--rule);
+    border-radius: 4px; overflow: hidden; display: flex; align-items: center; justify-content: center;
+    position: relative;
+  }
+  .map-placeholder iframe { width: 100%; height: 100%; border: none; }
+
+  /* ─── BOOKING CTA ─── */
+  #book {
+    background: var(--gold);
+    text-align: center; padding: 5rem 6rem;
+  }
+  #book .section-title { color: #fff; margin-bottom: 1rem; }
+  #book .section-lead { color: rgba(255,255,255,0.75); margin: 0 auto 2.5rem; }
+  .btn-white {
+    background: #fff; color: var(--gold);
+    font-size: 0.8rem; font-weight: 500; letter-spacing: 0.12em;
+    text-transform: uppercase; text-decoration: none;
+    padding: 1rem 2.5rem; border-radius: 2px; display: inline-block;
+    transition: background 0.2s, color 0.2s;
+  }
+  .btn-white:hover { background: var(--blush); color: var(--gold); }
+
+  /* ─── FOOTER ─── */
+  footer {
+    background: var(--ink); color: rgba(250,247,243,0.45);
+    padding: 2.5rem 6rem; font-size: 0.78rem;
+    display: flex; justify-content: space-between; align-items: center;
+  }
+  footer a { color: var(--gold-lt); text-decoration: none; }
+  .footer-logo {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.2rem; color: var(--warm-wht); font-weight: 300;
+  }
+  .footer-logo span { font-style: italic; color: var(--gold-lt); }
+
+  /* ─── MOBILE ─── */
+  /* ─── UPDATED RESPONSIVE MOBILE FIXES ─── */
+  @media (max-width: 900px) {
+    nav { padding: 1rem 1.5rem; }
+    .nav-links, .nav-cta { display: none; }
+    
+    /* FIX: Top Visual Scaling */
+    #hero { grid-template-columns: 1fr; min-height: auto; }
+    .hero-left { padding: 3rem 1.5rem 2.5rem; }
+    .hero-right { 
+      height: 380px; /* Increased height so the mirror illustration doesn't smash */
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .salon-illustration {
+      width: 65%; /* Constrains the width slightly on mobile so it looks elegant */
+    }
+
+    /* FIX: Section & Grid Spacing */
+    section, #about, #why, #contact { padding: 4rem 1.5rem; }
+    #about, #why, #contact { grid-template-columns: 1fr; gap: 4rem; } /* Added large uniform gap between stacked columns */
+    .services-grid { grid-template-columns: 1fr 1fr; }
+    .services-header { flex-direction: column; align-items: flex-start; gap: 1rem; }
+    
+    /* FIX: Smushed Maps & Contact items */
+    #contact .hours-grid { margin-bottom: 2rem; }
+    .map-placeholder { margin-bottom: 1.5rem; }
+    
+    /* FIX: White Panels Connected at the End */
+    #book { 
+      padding: 4rem 1.5rem; 
+    }
+    #book .btn-white {
+      display: block; /* Forces buttons to be full rows instead of forcing side-by-side */
+      margin: 1rem auto; /* Adds clean spacing around them */
+      max-width: 320px; /* Keeps them looking crisp, not stretched */
+      padding: 0.85rem 1.5rem;
+    }
+
+    footer { flex-direction: column; gap: 1rem; padding: 2rem 1.5rem; text-align: center; }
+    .hero-stats { gap: 1.5rem; flex-wrap: wrap; }
+  }
+
+  @media (max-width: 560px) {
+    .services-grid { grid-template-columns: 1fr; }
+    .hero-right { height: 320px; } /* Slightly scales down the mirror asset on very tight phone widths */
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<!-- MOBILE-RESPONSIVE BUTTON GROUP -->
+<div class="nav-buttons-container">
+  
+  <!-- Etobicoke Call Button -->
+  <a href="tel:+14167487574" class="nav-phone-btn">
+    Etobicoke: (416) 748-7574
+  </a>
+
+  <!-- Brampton Call Button -->
+  <a href="tel:+19057902300" class="nav-phone-btn">
+    Brampton: (905) 790-2300
+  </a>
+
+</div>
+
+<!-- RESPONSIVE STYLES (Paste this right below the buttons) -->
+<style>
+  .nav-buttons-container {
+    display: flex; 
+    gap: 0.5rem; 
+    align-items: center;
+  }
+  
+  .nav-phone-btn {
+    background-color: #b8924a; 
+    color: #ffffff; 
+    text-transform: uppercase; 
+    font-size: 0.7rem; 
+    font-weight: 600; 
+    letter-spacing: 0.05em; 
+    padding: 0.5rem 0.8rem; 
+    text-decoration: none; 
+    border-radius: 2px;
+    white-space: nowrap;
+    text-align: center;
+  }
+
+  /* When the screen is narrow (like a phone) */
+  @media (max-width: 768px) {
+    .nav-buttons-container {
+      flex-direction: column; /* Stacks buttons vertically instead of horizontally */
+      gap: 0.25rem;
+      width: 100%;
+    }
+    .nav-phone-btn {
+      font-size: 0.65rem; /* Slightly smaller text for mobile fits perfectly */
+      padding: 0.4rem 0.6rem;
+      width: 100%; /* Makes buttons even widths when stacked */
+    }
+  }
+</style>
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-left"> 
+    <p class="hero-eyebrow">Est. 2005 · Etobicoke + Brampton </p>
+    <h1 class="hero-title">
+      Where Beauty<br>
+      Finds Its <em>Finest</em><br>
+      Expression
+    </h1>
+    <p class="hero-sub">Serving Etobicoke, Brampton, and the Greater Toronto Area for nearly two decades. Full-service hair, skin, and beauty care under one roof — by a team that genuinely listens.</p>
+    <div class="hero-actions">
+      <a href="#services" class="btn-ghost">View Services</a>
+    </div>
+    <div class="hero-stats">
+      <div>
+        <div class="stat-num">19+</div>
+        <div class="stat-label">Years Serving GTA</div>
+      </div>
+      <div>
+        <div class="stat-num">4.5+★</div>
+        <div class="stat-label">Customer Rating</div>
+      </div>
+      <div>
+        <div class="stat-num">7</div>
+        <div class="stat-label">Days a Week</div>
+      </div>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="hero-decor d1">M</div>
+    <div class="hero-decor d2">✦</div>
+    <div class="hero-image-wrap">
+      <!-- Stylised SVG Illustration -->
+      <svg class="salon-illustration" viewBox="0 0 360 460" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <!-- Mirror frame -->
+        <rect x="80" y="30" width="200" height="260" rx="100" fill="#e8d9c4" stroke="#b8924a" stroke-width="2.5"/>
+        <rect x="94" y="44" width="172" height="232" rx="86" fill="#f5ede3"/>
+        <!-- Reflection gradient -->
+        <ellipse cx="180" cy="160" rx="75" ry="95" fill="url(#mirrorGrad)"/>
+        <!-- Scissors decorative -->
+        <g transform="translate(110,340) rotate(-30)" opacity="0.7">
+          <ellipse cx="0" cy="-18" rx="7" ry="18" fill="none" stroke="#b8924a" stroke-width="2"/>
+          <ellipse cx="16" cy="-18" rx="7" ry="18" fill="none" stroke="#b8924a" stroke-width="2"/>
+          <line x1="0" y1="0" x2="28" y2="55" stroke="#b8924a" stroke-width="2"/>
+          <line x1="16" y1="0" x2="-12" y2="55" stroke="#b8924a" stroke-width="2"/>
+        </g>
+        <!-- Comb -->
+        <rect x="210" y="340" width="60" height="8" rx="4" fill="#b8924a" opacity="0.6"/>
+        <line x1="215" y1="348" x2="215" y2="368" stroke="#b8924a" stroke-width="2" opacity="0.6"/>
+        <line x1="223" y1="348" x2="223" y2="368" stroke="#b8924a" stroke-width="2" opacity="0.6"/>
+        <line x1="231" y1="348" x2="231" y2="368" stroke="#b8924a" stroke-width="2" opacity="0.6"/>
+        <line x1="239" y1="348" x2="239" y2="368" stroke="#b8924a" stroke-width="2" opacity="0.6"/>
+        <line x1="247" y1="348" x2="247" y2="368" stroke="#b8924a" stroke-width="2" opacity="0.6"/>
+        <line x1="255" y1="348" x2="255" y2="368" stroke="#b8924a" stroke-width="2" opacity="0.6"/>
+        <line x1="263" y1="348" x2="263" y2="368" stroke="#b8924a" stroke-width="2" opacity="0.6"/>
+        <!-- Star accents -->
+        <text x="148" y="410" fill="#b8924a" font-size="18" opacity="0.5">✦</text>
+        <text x="185" y="425" fill="#b8924a" font-size="12" opacity="0.35">✦</text>
+        <text x="205" y="410" fill="#b8924a" font-size="14" opacity="0.45">✦</text>
+        <!-- Mahek text in mirror -->
+        <text x="180" y="175" text-anchor="middle" fill="#b8924a" font-family="Georgia,serif" font-size="28" font-style="italic" opacity="0.55">Mahek</text>
+        <defs>
+          <radialGradient id="mirrorGrad" cx="40%" cy="35%">
+            <stop offset="0%" stop-color="#ffffff" stop-opacity="0.6"/>
+            <stop offset="100%" stop-color="#d4af72" stop-opacity="0.08"/>
+          </radialGradient>
+        </defs>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="about-text">
+    <p class="section-eyebrow">Our Story</p>
+    <h2 class="section-title">Passion for beauty,<br><em>perfected over 19 years</em></h2>
+    <blockquote class="about-quote">"If you are looking for flawless skin and beauty services, Mahek Beauty Salon is where you need to be."</blockquote>
+    <div class="about-text">
+      <p>Welcome to Mahek Beauty Salon. For nearly two decades we have been proudly serving the Greater Toronto Area from our Etobicoke and Brampton location, offering the full range of latest beauty and grooming services.</p>
+      <p>Our passionate, licensed team takes time to understand your hair type, skin needs, and personal goals before recommending any treatment. From everyday haircuts to transformative bridal packages, we bring the same care and precision to every chair.</p>
+      <p>We serve both men and women, and keep our environment spotlessly clean, calm, and welcoming — the kind of place you keep coming back to.</p>
+    </div>
+  </div>
+  <div class="about-img-grid">
+    <div class="img-placeholder tall">
+      <svg width="80" height="80" viewBox="0 0 80 80"><circle cx="40" cy="28" r="16" fill="none" stroke="#b8924a" stroke-width="1.5" opacity="0.4"/><path d="M14 72c0-14.36 11.64-26 26-26s26 11.64 26 26" fill="none" stroke="#b8924a" stroke-width="1.5" opacity="0.4"/></svg>
+    </div>
+    <div class="img-placeholder short">
+      <svg width="50" height="50" viewBox="0 0 50 50"><path d="M10 40 Q25 10 40 40" fill="none" stroke="#b8924a" stroke-width="1.5" opacity="0.4"/><circle cx="25" cy="38" r="4" fill="#b8924a" opacity="0.2"/></svg>
+    </div>
+    <div class="img-placeholder short">
+      <svg width="50" height="50" viewBox="0 0 50 50"><rect x="10" y="10" width="30" height="30" rx="15" fill="none" stroke="#b8924a" stroke-width="1.5" opacity="0.4"/><text x="25" y="31" text-anchor="middle" fill="#b8924a" opacity="0.4" font-size="14">✦</text></svg>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section id="services">
+  <div class="services-header">
+    <div>
+      <p class="section-eyebrow">What We Offer</p>
+      <h2 class="section-title">Complete beauty,<br><em>head to toe</em></h2>
+    </div>
+    </div>
+  <div class="services-grid">
+    <div class="service-card">
+      <div class="service-icon">✂️</div>
+      <h3 class="service-name">Haircut & Styling</h3>
+      <p class="service-desc">Precision cuts, blowouts, and styling for men and women. Our stylists tailor each cut to your face shape and lifestyle.</p>
+      <span class="service-price">Men & Women</span>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">🎨</div>
+      <h3 class="service-name">Colour & Highlights</h3>
+      <p class="service-desc">From bold balayage to subtle highlights and full colour. We use quality products that protect and nourish while transforming.</p>
+      <span class="service-price">Consult for pricing</span>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">✨</div>
+      <h3 class="service-name">Nanoplastia Treatment</h3>
+      <p class="service-desc">Our sought-after smoothing treatment — leaves hair silky, frizz-free, and brilliantly shiny. As seen in glowing client reviews.</p>
+      <span class="service-price">Premium service</span>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">💆</div>
+      <h3 class="service-name">Facials & Skin Care</h3>
+      <p class="service-desc">Casmara facials, acne treatments, and rejuvenating skin rituals performed by knowledgeable esthetics specialists.</p>
+      <span class="service-price">Multiple options</span>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">🪡</div>
+      <h3 class="service-name">Threading & Waxing</h3>
+      <p class="service-desc">Eyebrow threading, lip, chin, full-face waxing, and Brazilian wax. Precise shaping tailored to your unique features.</p>
+      <span class="service-price">From $8</span>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">👰</div>
+      <h3 class="service-name">Bridal Services</h3>
+      <p class="service-desc">Complete bridal beauty packages — hair, makeup, and skincare — for your most important day. Book early for availability.</p>
+      <span class="service-price">Full packages available</span>
+    </div>
+  </div>
+</section>
+
+<!-- WHY US -->
+<section id="why">
+  <div>
+    <p class="section-eyebrow" style="color: var(--gold);">Why Clients Stay</p>
+    <h2 class="section-title">The Mahek<br><em>difference</em></h2>
+    <p class="section-lead">We've earned a loyal clientele over two decades by treating every single visit as if it were someone's first — and most important — appointment.</p>
+    <ul class="perks-list">
+      <li class="perk">
+        <div class="perk-num">01</div>
+        <div class="perk-text">
+          <strong>Licensed, experienced stylists</strong>
+          <p> Our full team hold professional certifications and bring years of hands-on expertise.</p>
+        </div>
+      </li>
+      <li class="perk">
+        <div class="perk-num">02</div>
+        <div class="perk-text">
+          <strong>They actually listen</strong>
+          <p>We consult before we cut. Your goals, your hair type, your skin — we understand it before recommending anything.</p>
+        </div>
+      </li>
+      <li class="perk">
+        <div class="perk-num">03</div>
+        <div class="perk-text">
+          <strong>Spotlessly clean environment</strong>
+          <p>Fresh tools, sanitized stations, and a calm, well-lit space that makes every visit feel like a proper escape.</p>
+        </div>
+      </li>
+      <li class="perk">
+        <div class="perk-num">04</div>
+        <div class="perk-text">
+          <strong>Open 7 days a week</strong>
+          <p>Mon–Fri 10am–8pm, Sat 10am–8pm, Sun 10am–7pm. Beauty shouldn't have to wait for a weekday opening.</p>
+        </div>
+      </li>
+    </ul>
+  </div>
+  <div class="why-visual">
+    <div class="review-card">
+      <div class="review-stars">★★★★★</div>
+      <p class="review-text">"I have been going to Mona at this salon for 10 years now and she is hands down the best hair stylist I have ever met. Moved out of the city now, but I still drive all the way down just for a haircut from Mona."</p>
+      <div class="review-author">— Long-time client, Google Reviews</div>
+    </div>
+    <div class="review-card">
+      <div class="review-stars">★★★★★</div>
+      <p class="review-text">"My hair now has a smooth and shiny texture — a complete transformation. Nikki is the best in town and knows her job really well. She truly listens, understands your needs, and recommends the perfect solution."</p>
+      <div class="review-author">— Nanoplastia client, Google Reviews</div>
+    </div>
+    <div class="review-card">
+      <div class="review-stars">★★★★★</div>
+      <p class="review-text">"Comparing other hair salons in Canada — this salon surpasses every expectation. Super friendly and inviting, great conversation, relaxed vibe, and professional customer service."</p>
+      <div class="review-author">— First-time visitor, Google Reviews</div>
+    </div>
+  </div>
+</section>
+
+<!-- HOURS & CONTACT -->
+<section id="contact" style="display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: start;">
+  
+  <!-- 
+    COLUMN 1 (LEFT SIDE): Contact Details + Both Maps
+    Added 'display: flex; flex-direction: column;' to lock everything into a perfect vertical line.
+  -->
+  <div style="display: flex; flex-direction: column; gap: 3rem;">
+    
+    <div>
+      <!-- Section Header -->
+      <p class="section-eyebrow">Find Us</p>
+      <h2 class="section-title" style="margin-bottom: 2rem;">Visit <em>Mahek</em></h2>
+
+      <!-- Contact details (Forced to stack vertically) -->
+      <div class="contact-info" style="display: flex; flex-direction: column; gap: 1.5rem;">
+        <div class="contact-item">
+          <div class="contact-icon">📍</div>
+          <div>
+            <div class="contact-label">Etobicoke Location</div>
+            <div class="contact-value">2656A Islington Ave<br>Toronto, ON M9V 2X5</div>
+          </div>
+        </div>
+
+        <div class="contact-item">
+          <div class="contact-icon">📍</div>
+          <div>
+            <div class="contact-label">Brampton Location</div>
+            <div class="contact-value">2260 Bovaird Dr E Unit 117<br>Brampton, ON L6R 0W3</div>
+          </div>
+        </div>
+
+        <div class="contact-item">
+          <div class="contact-icon">📞</div>
+          <div>
+            <div class="contact-label">Etobicoke Phone</div>
+            <div class="contact-value"><a href="tel:+14167487574">(416) 748-7574</a></div>
+          </div>
+        </div>
+
+        <div class="contact-item">
+          <div class="contact-icon">📞</div>
+          <div>
+            <div class="contact-label">Brampton Phone</div>
+            <div class="contact-value"><a href="tel:+19057902300">(905) 790-2300</a></div>
+          </div>
+        </div>
+
+        <div class="contact-item">
+          <div class="contact-icon">🌐</div>
+          <div>
+            <div class="contact-label">Find us on</div>
+            <div class="contact-value"><a href="https://www.facebook.com/maheksalon/" target="_blank">Facebook · @maheksalon</a></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Maps Container (Forced to span full width of the column, stacked vertically) -->
+    <div style="display: flex; flex-direction: column; gap: 2.5rem; width: 100%;">
+      <!-- Etobicoke Map -->
+      <div style="width: 100%;">
+        <div class="contact-label" style="margin-bottom: 0.5rem;">Etobicoke Map</div>
+        <div class="map-placeholder" style="margin-top: 0; height: 260px; width: 100%;">
+          <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2884.7!2d-79.569!3d43.749!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x882b3c1b7e6a2c3f%3A0x0!2s2656A+Islington+Ave%2C+Etobicoke%2C+ON!5e0!3m2!1sen!2sca!4v1700000000000!5m2!1sen!2sca"
+            style="border:0; width:100%; height:100%;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
+          </iframe>
+        </div>
+      </div>
+
+      <!-- Brampton Map -->
+      <div style="width: 100%;">
+        <div class="contact-label" style="margin-bottom: 0.5rem;">Brampton Map</div>
+        <div class="map-placeholder" style="margin-top: 0; height: 260px; width: 100%;">
+          <iframe 
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2881.0820794508494!2d-79.72124592340333!3d43.77114674480749!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x882b15fa4bbab2ef%3A0x867ba6052f5efce0!2s2260%20Bovaird%20Dr%20E%20Unit%20117%2C%20Brampton%2C%20ON%20L6R%200W3!5e0!3m2!1sen!2sca!4v1719340000000!5m2!1sen!2sca" 
+            style="border:0; width:100%; height:100%;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
+          </iframe>
+        </div>
+      </div>
+    </div>
+  </div> 
+
+  <!-- COLUMN 2 (RIGHT SIDE): Opening Hours -->
+  <div>
+    <p class="section-eyebrow">Opening Hours</p>
+    <h2 class="section-title">We're open<br><em>every day</em></h2>
+    
+    <div class="hours-grid">
+      <div class="hours-row"><span class="day">Monday</span><span class="time">10:00 AM – 8:00 PM</span></div>
+      <div class="hours-row"><span class="day">Tuesday</span><span class="time">10:00 AM – 8:00 PM</span></div>
+      <div class="hours-row"><span class="day">Wednesday</span><span class="time">10:00 AM – 8:00 PM</span></div>
+      <div class="hours-row"><span class="day">Thursday</span><span class="time">10:00 AM – 8:00 PM</span></div>
+      <div class="hours-row today"><span class="day">Friday ✦ Today</span><span class="time">10:00 AM – 8:00 PM</span></div>
+      <div class="hours-row"><span class="day">Saturday</span><span class="time">10:00 AM – 8:00 PM</span></div>
+      <div class="hours-row"><span class="day">Sunday</span><span class="time">10:00 AM – 7:00 PM</span></div>
+    </div>
+    
+    <p style="margin-top: 1.5rem; font-size: 0.82rem; color: var(--mid);">
+      Walk-ins welcome. Appointments recommended for bridal, colour, and treatment services.
+    </p>
+  </div>
+
+</section>
+
+<!-- BOOKING CTA -->
+<section id="book">
+  <p class="section-eyebrow" style="color:rgba(255,255,255,0.65);">Ready for a new look?</p>
+  <h2 class="section-title">Book your appointment today</h2>
+  <p class="section-lead">Call us directly or walk in — we're open seven days a week and always happy to welcome you.</p>
+  <a href="tel:+14167487574" class="btn-white">ETOBICOKE - (416) 748-7574</a>
+  <a href="tel:+19057902300" class="btn-white">BRAMPTON - (905) 790-2300</a>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">Mahek <span>Beauty Salon</span></div>
+  <div>ETOBICOKE LOCATION - 2656A Islington Ave, Etobicoke, ON · <a href="tel:+14167487574">(416) 748-7574</a></div>
+  <div>BRAMPTON LOCATION - 2260 Bovaird Dr E Unit 117, Brampton, ON · <a href="tel:+19057902300">(905) 790-2300</a> </div>
+  <div>© 2026 Mahek Beauty Salon</div>
+</footer>
+
+<script>
+  // Highlight today's day dynamically
+  const days = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
+  const today = days[new Date().getDay()];
+  document.querySelectorAll('.hours-row').forEach(row => {
+    const dayEl = row.querySelector('.day');
+    if (dayEl && dayEl.textContent.includes(today)) {
+      row.classList.add('today');
+      dayEl.textContent = today + ' ✦ Today';
+    } else {
+      row.classList.remove('today');
+      if (dayEl && dayEl.textContent.includes('✦ Today')) {
+        dayEl.textContent = dayEl.textContent.replace(' ✦ Today', '');
+      }
+    }
+  });
+</script>
+</body>
+</html>
