@@ -416,6 +416,37 @@
       padding: 0.4rem 0.6rem;
       width: 100%; /* Makes buttons even widths when stacked */
     }
+    /* ─── MOBILE HEADER RESPONSIVE FIX ─── */
+@media (max-width: 768px) {
+  .main-header-nav {
+    flex-direction: column;      /* Stacks logo on top, buttons below */
+    gap: 1rem;                   /* Adds clean spacing between them */
+    padding: 1rem;               /* Snug padding for phone screens */
+    text-align: center;
+  }
+
+  .main-header-nav .nav-links {
+    display: none;               /* Hides desktop text links on phone to save space */
+  }
+
+  .main-header-nav .nav-buttons-container {
+    width: 100%;
+    flex-direction: column;      /* Stacks the phone buttons cleanly */
+    gap: 0.5rem;
+  }
+
+  .main-header-nav .nav-phone-btn {
+    width: 100%;                 /* Makes buttons full width and perfectly uniform */
+    text-align: center;
+    padding: 0.65rem 1rem;
+    font-size: 0.75rem;
+  }
+
+  /* Pushes the hero layout down slightly further so it doesn't get covered by the taller phone navbar */
+  #hero {
+    padding-top: 150px !important;
+  }
+}
   }
 </style>
 <!-- HERO -->
